@@ -7,7 +7,6 @@ from Test1GBCE import *
 sys.path.append("..")
 from stock import *
    
-
    
 stock=[]
 stock.append(Stock("TEA","Common",0.00,"null",100))
@@ -17,6 +16,7 @@ stock.append(Stock("GIN","Preferred",8.00,0.02,100))
 stock.append(Stock("JOE","Common",13.00,"null",250))
 
 allTest=True
+
 #test dividended Yield
 if testDividendYield(stock):
     print "Dividend Yield Ok"
@@ -24,7 +24,6 @@ else:
 	allTest=False
 	print "Error Dividend Yield"
 	
-
 #test PE ratio
 if testPERatio(stock):
     print "PE Ratio Ok"
@@ -39,9 +38,7 @@ else:
 	print "Add trades error"
 	allTest=False
 
-
 #test volume Weighted Stock Price
-
 if testVolumeWeightedStockPrice(stock):
     print "Volume Weigthed Stock Price Ok"
 else:
@@ -49,15 +46,14 @@ else:
 	print "Volume Weigthed Stock Price Error"
 
 
-
-
-
+# test GBCE All Share Index using the geometric mean of prices for all stocks
 if testGBCE(stock):
 	print "GBCE all share test Ok"
 else:
 	print "GBCE all share test Error"	
 	allTest=False
 
+#print the final result
 if allTest:
 	print "Tests completed: Ok"
 else:

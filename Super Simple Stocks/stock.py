@@ -11,6 +11,7 @@ class Stock:
         self.__perValue=perValue
         self.__trades=[]
 
+#Get and Set for all variables
     def getStockSymbole(self):
         return self.__stockSymbole
 
@@ -74,6 +75,7 @@ class Stock:
     def add_trade(self,timestamp, quantity,b_s,price):
         if type(timestamp)!=datetime.datetime:        
             timestamp=testTimestamp(timestamp)
+        #check if all parameters are good to create a trade
         if isNumber(quantity) and isNumber(price) and timestamp!="Please check the format and if the date/time is accurate" and testDatePast(timestamp) and sellOrBuy(b_s):
             print "The trade as been added"
             self.__trades.append(Trade(timestamp, quantity,b_s.upper(),price))
@@ -87,6 +89,7 @@ class Stock:
         sumPriQuan=0
         comptUsed=0
         for trade in self.getTrades():
+            #check if the trade is in the last 15 minutes
             if trade.getTimestamp()-datetime.datetime.now()<datetime.timedelta(minutes=15) and trade.getTimestamp()-datetime.datetime.now()>datetime.timedelta(minutes=-15):
                 sumPriQuan+=(trade.getPrice()*trade.getQuantity())
                 comptUsed+=1
@@ -98,4 +101,21 @@ class Stock:
         elif sumQuantity==0:
             return "No quantity for "+self.getStockSymbole()
         else:
-            return sumPriQuan/sumQuantity     	
+            return sumPriQuan/sumQuantity
+
+    def getTheLastTrade(self):
+        lastTradeIndex=-1
+        #Compare all trades in order to get the last one
+        for i in self.getTrades():
+            for j in self.getTrades():
+                if i.getTimestamp()>j.getTimestamp():
+                    lastTradeIndex=self.getTrades().index(i)
+        return lastTradeIndex
+
+    def getLastTradePrice(self):
+        #return the price of the last trade
+        if self.getTheLastTrade()!=-1:
+            return self.getTrades()[self.getTheLastTrade()].getPrice()
+        else:
+            return False
+               	

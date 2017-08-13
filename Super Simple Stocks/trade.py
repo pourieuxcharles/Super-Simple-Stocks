@@ -6,6 +6,7 @@ class Trade():
 		self.__b_s=b_s
 		self.__price=price
 
+#Get and Set for all variables
     def getTimestamp(self):
         return self.__timestamp
 
@@ -30,5 +31,6 @@ class Trade():
     def setPrice(self,price):
         self.__price=price
 
+#function use to print all the variable of the trade
     def printTrade(self):
         print str(self.getTimestamp())+" "+str(self.getQuantity())+" "+str(self.getB_s())+" "+str(self.getPrice())
