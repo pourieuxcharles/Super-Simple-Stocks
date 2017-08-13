@@ -23,10 +23,10 @@ stock.append(Stock("GIN","Preferred",8.00,0.02,100))
 stock.append(Stock("JOE","Common",13.00,"null",250))
 
 #test Dividend Yield
-#testDividendYield(stock)
+testDividendYield(stock)
 
 #test P/E ratio
-#testPE_ratio(stock)
+testPE_ratio(stock)
 
 #test add trade
 testAddTrade(stock)
